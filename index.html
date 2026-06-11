@@ -1,545 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Levin Goldman & Ezra Dental Clinic | Far Rockaway, NY</title>
-  <meta name="description" content="Premium dental care for families, cosmetic treatments, and emergency dentistry in Far Rockaway, NY. Book your appointment today." />
-  <meta name="keywords" content="dental clinic, Far Rockaway, cosmetic dentistry, dental implants, emergency dental care, teeth whitening" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <!-- Calendly widget -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <meta name="description" content="Premium dental care for families, cosmetic treatments, and emergency dentistry in Far Rockaway, NY. Book your appointment today."/>
+  <meta name="theme-color" content="#0F172A"/>
+
+  <!-- FIX 1: Preconnect only to fonts, drop Calendly preconnect (loaded lazily) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <!-- FIX 2: Load only 2 weights per font (was 4+3), subset to latin -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap&subset=latin"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap&subset=latin" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap"/></noscript>
+
+  <!-- FIX 3: Calendly CSS/JS loaded lazily only when user clicks Book -->
+  <!-- Removed render-blocking Calendly from <head> -->
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* FIX 4: Minified critical CSS only - removed unused rules */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --blue:#3B82F6;--blue-l:#EFF6FF;--blue-d:#1D4ED8;
+      --gray:#F8FAFC;--gm:#E2E8F0;--gt:#64748B;
+      --navy:#0F172A;--nm:#1E293B;
+      --fd:'Playfair Display',Georgia,serif;
+      --fb:'Inter',system-ui,sans-serif;
+      --sh:0 4px 16px rgba(15,23,42,.08);
+      --sl:0 20px 40px rgba(15,23,42,.10);
+      --sb:0 8px 32px rgba(59,130,246,.20);
+      --r:16px;--rl:24px
+    }
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--fb);color:var(--navy);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    :root {
-      --white: #FFFFFF;
-      --blue: #3B82F6;
-      --blue-light: #EFF6FF;
-      --blue-mid: #DBEAFE;
-      --blue-dark: #1D4ED8;
-      --gray-soft: #F8FAFC;
-      --gray-mid: #E2E8F0;
-      --gray-text: #64748B;
-      --navy: #0F172A;
-      --navy-mid: #1E293B;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-body: 'Inter', system-ui, sans-serif;
-      --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
-      --shadow-md: 0 4px 16px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.04);
-      --shadow-lg: 0 20px 40px rgba(15,23,42,0.10), 0 8px 16px rgba(15,23,42,0.06);
-      --shadow-blue: 0 8px 32px rgba(59,130,246,0.20);
-      --radius: 16px;
-      --radius-lg: 24px;
-    }
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,.6);transition:box-shadow .3s}
+    .nav-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:68px}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--blue),var(--blue-d));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px}
+    .nav-logo-t{font-family:var(--fd);font-weight:700;font-size:.95rem;color:var(--navy);line-height:1.2}
+    .nav-logo-s{font-family:var(--fb);font-size:.65rem;color:var(--gt);letter-spacing:.08em;text-transform:uppercase}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:.875rem;font-weight:600;color:var(--nm);text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a:focus{color:var(--blue)}
+    .nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:50px;box-shadow:var(--sb)}
+    .nav-cta:hover,.nav-cta:focus{background:var(--blue-d)!important}
+    .nav-mb{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+    .nav-mb span{width:22px;height:2px;background:var(--navy);border-radius:2px;transition:transform .3s,opacity .3s;display:block}
+    .mmenu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--gm);padding:16px 24px 24px;z-index:999;flex-direction:column;gap:0}
+    .mmenu.open{display:flex}
+    .mmenu a{font-size:1rem;font-weight:600;color:var(--navy);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--gm);display:block}
+    .mmenu a:last-child{border:none;color:var(--blue)}
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    /* HERO */
+    .hero{min-height:100vh;background:linear-gradient(160deg,#fff 0%,#EFF6FF 55%,#DBEAFE 100%);display:flex;align-items:center;padding-top:68px;position:relative;overflow:hidden}
+    /* FIX 5: Use will-change only on animated elements, contain layout */
+    .hero-ring{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(59,130,246,.07) 0%,transparent 70%)}
+    .hero-ring.r1{width:500px;height:500px;top:-80px;right:-80px}
+    .hero-ring.r2{width:350px;height:350px;bottom:-60px;left:-60px}
+    .hero-in{max-width:1200px;margin:0 auto;padding:72px 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:50px;padding:5px 14px;margin-bottom:22px;font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase}
+    /* FIX 6: badge pulse via CSS only, no JS */
+    .badge::before{content:'●';font-size:7px;animation:pulse 2.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    h1{font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:700;line-height:1.12;color:var(--navy);margin-bottom:18px;letter-spacing:-.02em}
+    h1 em{font-style:italic;color:var(--blue)}
+    .hero-sub{font-size:1.05rem;line-height:1.72;color:var(--gt);max-width:460px;margin-bottom:32px}
+    .btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-weight:700;font-size:.9rem;padding:13px 26px;border-radius:50px;text-decoration:none;box-shadow:var(--sb);transition:background .2s,transform .2s;border:none;cursor:pointer;font-family:var(--fb)}
+    .btn-p:hover,.btn-p:focus{background:var(--blue-d);transform:translateY(-2px)}
+    .btn-s{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-weight:700;font-size:.9rem;padding:13px 26px;border-radius:50px;text-decoration:none;border:1.5px solid var(--gm);box-shadow:0 1px 3px rgba(15,23,42,.06);transition:border-color .2s,color .2s,transform .2s;cursor:pointer;font-family:var(--fb)}
+    .btn-s:hover,.btn-s:focus{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
 
-    body {
-      font-family: var(--font-body);
-      color: var(--navy);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    /* TOOTH SVG */
+    .hero-vis{display:flex;align-items:center;justify-content:center;position:relative}
+    /* FIX 7: will-change on the one animated element, contain:layout */
+    .tooth-wrap{position:relative;width:340px;height:380px;will-change:transform;animation:float 7s ease-in-out infinite;contain:layout}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-18px) rotate(1deg)}}
+    .tooth-glow{position:absolute;inset:-40px;background:radial-gradient(ellipse,rgba(59,130,246,.13) 0%,transparent 70%);border-radius:50%;animation:gp 4.5s ease-in-out infinite;contain:layout}
+    @keyframes gp{0%,100%{opacity:.7}50%{opacity:1}}
+    .stat-cards{position:absolute;right:-16px;bottom:36px;display:flex;flex-direction:column;gap:10px}
+    /* FIX 8: No animation on stat-cards (caused CLS) */
+    .sc{background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.8);border-radius:13px;padding:11px 16px;box-shadow:var(--sh);display:flex;align-items:center;gap:10px}
+    .sc-icon{width:34px;height:34px;background:var(--blue-l);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px}
+    .sc-v{font-size:.95rem;font-weight:700;color:var(--navy)}
+    .sc-l{font-size:.7rem;color:var(--gt);font-weight:600}
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(226,232,240,0.6);
-      transition: all 0.3s ease;
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 72px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px; text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 18px;
-    }
-    .nav-logo-text {
-      font-family: var(--font-display); font-weight: 600; font-size: 1rem;
-      color: var(--navy); line-height: 1.2;
-    }
-    .nav-logo-sub { font-family: var(--font-body); font-size: 0.68rem; font-weight: 400; color: var(--gray-text); letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a {
-      font-size: 0.875rem; font-weight: 500; color: var(--navy-mid);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--blue); }
-    .nav-cta {
-      background: var(--blue);
-      color: white !important;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 600 !important;
-      transition: all 0.2s ease !important;
-      box-shadow: var(--shadow-blue);
-    }
-    .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
-    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .nav-mobile-btn span { width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
-    .mobile-menu {
-      display: none; position: fixed; top: 72px; left: 0; right: 0;
-      background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--gray-mid);
-      padding: 20px 24px 28px; z-index: 999;
-      flex-direction: column; gap: 16px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 1rem; font-weight: 500; color: var(--navy); text-decoration: none; padding: 8px 0; border-bottom: 1px solid var(--gray-mid); }
-    .mobile-menu a:last-child { border-bottom: none; }
+    /* TRUST */
+    .trust{background:var(--navy);padding:64px 24px}
+    .trust-g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    /* FIX 9: Use content-visibility:auto for offscreen sections */
+    .ti{text-align:center;padding:36px 20px;opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+    .ti.vis{opacity:1;transform:none}
+    .ti+.ti{border-left:1px solid rgba(255,255,255,.1)}
+    .ti-icon{font-size:1.8rem;margin-bottom:14px}
+    .ti-n{font-family:var(--fd);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:700;color:#fff;line-height:1;margin-bottom:6px}
+    .ti-n span{color:var(--blue)}
+    .ti-l{font-size:.82rem;color:rgba(255,255,255,.55);font-weight:600;letter-spacing:.04em}
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--white) 0%, #EFF6FF 60%, #DBEAFE 100%);
-      display: flex; align-items: center;
-      padding-top: 72px;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg-circle {
-      position: absolute; border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-bg-circle.c1 { width: 600px; height: 600px; top: -100px; right: -100px; }
-    .hero-bg-circle.c2 { width: 400px; height: 400px; bottom: -80px; left: -80px; }
+    /* SECTIONS */
+    .sec{padding:88px 24px;content-visibility:auto;contain-intrinsic-size:0 600px}
+    .si{max-width:1200px;margin:0 auto}
+    .ey{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+    h2{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+    .sub{font-size:.95rem;color:var(--gt);line-height:1.7;max-width:520px}
+    .sh{margin-bottom:52px}
+    .fu{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fu.vis{opacity:1;transform:none}
 
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; padding: 80px 24px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 50px; padding: 6px 14px; margin-bottom: 24px;
-      font-size: 0.8rem; font-weight: 600; color: var(--blue); letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    /* SERVICES */
+    .sv{background:var(--gray)}
+    .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .scard{background:#fff;border:1px solid var(--gm);border-radius:var(--rl);padding:32px 28px;box-shadow:0 1px 3px rgba(15,23,42,.05);transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+    .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-d));transform:scaleX(0);transform-origin:left;transition:transform .25s}
+    .scard:hover{transform:translateY(-5px);box-shadow:var(--sl);border-color:transparent}
+    .scard:hover::after{transform:scaleX(1)}
+    .si-ico{width:52px;height:52px;background:var(--blue-l);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px;transition:background .25s}
+    .scard:hover .si-ico{background:var(--blue)}
+    .sh3{font-family:var(--fd);font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+    .sp{font-size:.86rem;color:var(--gt);line-height:1.65}
+    .sarr{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:.8rem;font-weight:700;color:var(--blue);opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+    .scard:hover .sarr{opacity:1;transform:none}
 
-    .hero-h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 700; line-height: 1.12;
-      color: var(--navy); margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .hero-h1 em { font-style: italic; color: var(--blue); }
-    .hero-sub {
-      font-size: 1.1rem; line-height: 1.7; color: var(--gray-text);
-      max-width: 480px; margin-bottom: 36px; font-weight: 400;
-    }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--blue);
-      color: white; font-weight: 600; font-size: 0.95rem;
-      padding: 14px 28px; border-radius: 50px; text-decoration: none;
-      box-shadow: var(--shadow-blue); transition: all 0.25s ease;
-      border: none; cursor: pointer; font-family: var(--font-body);
-    }
-    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(59,130,246,0.30); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: white; color: var(--navy); font-weight: 600; font-size: 0.95rem;
-      padding: 14px 28px; border-radius: 50px; text-decoration: none;
-      border: 1.5px solid var(--gray-mid); box-shadow: var(--shadow-sm);
-      transition: all 0.25s ease; cursor: pointer; font-family: var(--font-body);
-    }
-    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    /* ABOUT */
+    .about-g{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .aimg{border-radius:var(--rl);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--sl);background:linear-gradient(160deg,#DBEAFE,#EFF6FF);display:flex;align-items:center;justify-content:center;position:relative}
+    .apill{position:absolute;bottom:-14px;right:-14px;background:var(--navy);color:#fff;border-radius:13px;padding:14px 20px;box-shadow:var(--sl);display:flex;align-items:center;gap:10px}
+    .apill strong{display:block;font-size:.95rem;font-weight:700}
+    .apill span{font-size:.72rem;color:rgba(255,255,255,.55)}
+    .achk{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+    .achk-row{display:flex;align-items:flex-start;gap:12px}
+    .chk{width:22px;height:22px;min-width:22px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--blue);margin-top:2px}
+    .achk-row p{font-size:.88rem;color:var(--nm);line-height:1.6}
+    .achk-row strong{color:var(--navy)}
 
-    /* Tooth SVG illustration */
-    .hero-visual {
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .tooth-container {
-      position: relative; width: 360px; height: 400px;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0px) rotate(-1deg); }
-      50% { transform: translateY(-20px) rotate(1deg); }
-    }
-    .tooth-glow {
-      position: absolute; inset: -40px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 70%);
-      border-radius: 50%; animation: glowPulse 4s ease-in-out infinite;
-    }
-    @keyframes glowPulse { 0%,100%{opacity:0.7; transform:scale(1)} 50%{opacity:1; transform:scale(1.05)} }
+    /* REVIEWS */
+    .rv{background:var(--gray);overflow:hidden}
+    .rt{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;cursor:grab;-webkit-overflow-scrolling:touch}
+    .rt::-webkit-scrollbar{display:none}
+    .rc{min-width:320px;max-width:340px;background:#fff;border-radius:var(--rl);padding:28px;box-shadow:var(--sh);border:1px solid var(--gm);scroll-snap-align:start;flex-shrink:0}
+    .rstar{color:#FBBF24;font-size:.95rem;letter-spacing:2px;margin-bottom:14px}
+    .rtext{font-size:.87rem;color:var(--nm);line-height:1.7;margin-bottom:18px;font-style:italic}
+    .rauthor{display:flex;align-items:center;gap:10px}
+    .rav{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-d));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem}
+    .rname{font-weight:700;font-size:.87rem;color:var(--navy)}
+    .rdate{font-size:.72rem;color:var(--gt)}
+    .rdots{display:flex;justify-content:center;gap:8px;margin-top:28px}
+    .rd{width:8px;height:8px;border-radius:50%;background:var(--gm);cursor:pointer;transition:all .3s;border:none}
+    .rd.active{background:var(--blue);width:22px;border-radius:4px}
 
-    .hero-stat-cards {
-      position: absolute; right: -20px; bottom: 40px;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-    .stat-card {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.8);
-      border-radius: 14px;
-      padding: 12px 18px;
-      box-shadow: var(--shadow-md);
-      display: flex; align-items: center; gap: 12px;
-      animation: slideIn 0.6s ease forwards;
-    }
-    .stat-card:nth-child(1) { animation-delay: 0.2s; transform: translateX(20px); opacity: 0; }
-    .stat-card:nth-child(2) { animation-delay: 0.4s; transform: translateX(20px); opacity: 0; }
-    @keyframes slideIn { to { transform: translateX(0); opacity: 1; } }
-    .stat-icon { width: 36px; height: 36px; background: var(--blue-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .stat-label { font-size: 0.72rem; color: var(--gray-text); font-weight: 500; }
-    .stat-val { font-size: 1rem; font-weight: 700; color: var(--navy); }
+    /* APPOINTMENT */
+    .appt{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 100%);position:relative;overflow:hidden}
+    .appt-in{max-width:1200px;margin:0 auto;padding:88px 24px;display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:start}
+    .al{color:#fff}
+    .aey{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(96,165,250,.9);margin-bottom:10px}
+    .ah2{font-family:var(--fd);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:#fff;line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+    .asub{font-size:.95rem;color:rgba(255,255,255,.62);line-height:1.72;margin-bottom:28px}
+    .af{display:flex;flex-direction:column;gap:14px}
+    .af-row{display:flex;align-items:center;gap:10px;font-size:.86rem;color:rgba(255,255,255,.78)}
+    .af-ico{width:30px;height:30px;border-radius:8px;background:rgba(59,130,246,.22);display:flex;align-items:center;justify-content:center;font-size:13px}
+    .cal-wrap{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);overflow:hidden;min-height:560px}
+    /* FIX 10: Fixed height to avoid CLS */
+    .cal-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;text-align:center;gap:18px;min-height:560px}
+    .cal-ph h3{font-family:var(--fd);font-size:1.4rem;color:#fff;font-weight:700}
+    .cal-ph p{font-size:.88rem;color:rgba(255,255,255,.6);max-width:280px;line-height:1.65}
 
-    /* ─── TRUST ─── */
-    .trust {
-      background: var(--navy);
-      padding: 72px 24px;
-    }
-    .trust-inner { max-width: 1200px; margin: 0 auto; }
-    .trust-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
-    }
-    .trust-item {
-      text-align: center; padding: 40px 24px;
-      position: relative;
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-    .trust-item.visible { opacity: 1; transform: translateY(0); }
-    .trust-item + .trust-item::before {
-      content: ''; position: absolute; left: 0; top: 20%; height: 60%; width: 1px;
-      background: rgba(255,255,255,0.1);
-    }
-    .trust-num {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5vw, 4rem);
-      font-weight: 700; color: white; line-height: 1;
-      margin-bottom: 8px;
-    }
-    .trust-num span { color: var(--blue); }
-    .trust-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); font-weight: 500; letter-spacing: 0.04em; }
-    .trust-icon { font-size: 2rem; margin-bottom: 16px; }
+    /* CONTACT */
+    .ct{background:var(--gray)}
+    .ct-g{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    .ci{display:flex;flex-direction:column;gap:16px}
+    .citem{display:flex;align-items:flex-start;gap:14px;padding:18px;background:#fff;border-radius:var(--r);border:1px solid var(--gm);box-shadow:0 1px 3px rgba(15,23,42,.05);transition:box-shadow .25s,border-color .25s}
+    .citem:hover{box-shadow:var(--sh);border-color:#BFDBFE}
+    .cico{width:42px;height:42px;min-width:42px;background:var(--blue-l);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px}
+    .clabel{font-size:.72rem;font-weight:700;color:var(--gt);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+    .cval{font-size:.92rem;color:var(--navy);font-weight:600;line-height:1.5}
+    .cval a{color:var(--blue);text-decoration:none}
+    .cval a:hover{text-decoration:underline}
+    .hrs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+    .hr{font-size:.8rem;color:var(--nm);display:flex;justify-content:space-between;gap:6px}
+    .hr span:last-child{color:var(--gt)}
+    .map-w{border-radius:var(--rl);overflow:hidden;box-shadow:var(--sl);border:1px solid var(--gm);height:400px;/* FIX 11: explicit height prevents CLS */}
+    .map-w iframe{width:100%;height:100%;border:0;display:block}
+    .call-b{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:700;font-size:1rem;padding:15px;border-radius:var(--r);text-decoration:none;box-shadow:var(--sb);transition:background .2s,transform .2s}
+    .call-b:hover,.call-b:focus{background:var(--blue-d);transform:translateY(-2px)}
 
-    /* ─── SECTION COMMON ─── */
-    .section { padding: 100px 24px; }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-eyebrow {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--blue); margin-bottom: 12px;
-    }
-    .section-h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      font-weight: 700; color: var(--navy); line-height: 1.2;
-      letter-spacing: -0.02em; margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 1rem; color: var(--gray-text); line-height: 1.7;
-      max-width: 560px; font-weight: 400;
-    }
-    .section-header { margin-bottom: 56px; }
-    .fade-up {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    /* FOOTER */
+    footer{background:var(--navy);padding:52px 24px 28px;color:rgba(255,255,255,.55)}
+    .ft{max-width:1200px;margin:0 auto}
+    .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .ft-n{font-family:var(--fd);font-size:1rem;font-weight:700;color:#fff;margin-bottom:10px}
+    .ft-p{font-size:.82rem;line-height:1.65;max-width:260px}
+    .ft-col h4{font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+    .ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:9px;transition:color .2s}
+    .ft-col a:hover{color:#fff}
+    .ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;font-size:.78rem;flex-wrap:wrap;gap:10px;color:rgba(255,255,255,.3)}
+    .ft-bot a{color:rgba(255,255,255,.4);text-decoration:none}
 
-    /* ─── SERVICES ─── */
-    .services { background: var(--gray-soft); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .service-card {
-      background: white;
-      border: 1px solid var(--gray-mid);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s ease;
-      cursor: default;
-      position: relative; overflow: hidden;
-    }
-    .service-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
-    .service-card:hover::after { transform: scaleX(1); }
-    .service-icon {
-      width: 56px; height: 56px;
-      background: var(--blue-light);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px; margin-bottom: 20px;
-      transition: all 0.3s ease;
-    }
-    .service-card:hover .service-icon { background: var(--blue); }
-    .service-h { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
-    .service-p { font-size: 0.88rem; color: var(--gray-text); line-height: 1.65; }
-    .service-arrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 18px; font-size: 0.82rem; font-weight: 600; color: var(--blue);
-      opacity: 0; transform: translateX(-8px); transition: all 0.3s ease;
-    }
-    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+    /* FIX 12: Contrast fix - darker gray text for accessibility */
+    .gt-fixed{color:#475569}
 
-    /* ─── ABOUT ─── */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-in{grid-template-columns:1fr;gap:36px;text-align:center;padding:56px 24px}
+      .btns{justify-content:center}
+      .hero-sub{margin:0 auto 28px}
+      .hero-vis{order:-1}
+      .tooth-wrap{width:240px;height:260px}
+      .stat-cards{right:0;bottom:0}
+      .trust-g{grid-template-columns:repeat(2,1fr)}
+      .ti+.ti{border-left:none}
+      .sg{grid-template-columns:repeat(2,1fr)}
+      .about-g{grid-template-columns:1fr;gap:36px}
+      .aimg{aspect-ratio:16/9}
+      .appt-in{grid-template-columns:1fr;gap:36px}
+      .ct-g{grid-template-columns:1fr;gap:28px}
+      .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+      .nav-links{display:none}
+      .nav-mb{display:flex}
     }
-    .about-img-wrap {
-      position: relative; border-radius: var(--radius-lg); overflow: visible;
+    @media(max-width:560px){
+      .sg{grid-template-columns:1fr}
+      .ft-top{grid-template-columns:1fr}
+      .ft-bot{flex-direction:column;text-align:center}
+      .trust-g{grid-template-columns:repeat(2,1fr)}
     }
-    .about-img-main {
-      width: 100%; aspect-ratio: 4/5;
-      border-radius: var(--radius-lg);
-      overflow: hidden; position: relative;
-      box-shadow: var(--shadow-lg);
-    }
-    .about-img-bg {
-      width: 100%; height: 100%;
-      background: linear-gradient(160deg, #DBEAFE 0%, #EFF6FF 50%, #E0F2FE 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .about-pill {
-      position: absolute; bottom: -16px; right: -20px;
-      background: var(--navy); color: white;
-      border-radius: 14px; padding: 16px 22px;
-      box-shadow: var(--shadow-lg);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .about-pill-icon { font-size: 22px; }
-    .about-pill-text strong { display: block; font-size: 1rem; font-weight: 700; }
-    .about-pill-text span { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
-
-    .about-checks { margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
-    .about-check {
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .check-dot {
-      width: 24px; height: 24px; min-width: 24px;
-      background: var(--blue-light); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--blue); margin-top: 1px;
-    }
-    .about-check p { font-size: 0.9rem; color: var(--navy-mid); line-height: 1.6; }
-    .about-check strong { color: var(--navy); }
-
-    /* ─── REVIEWS ─── */
-    .reviews { background: var(--gray-soft); overflow: hidden; }
-    .reviews-track-wrap { overflow: hidden; margin: 0 -24px; padding: 0 24px; }
-    .reviews-track {
-      display: flex; gap: 24px; overflow-x: auto;
-      scroll-snap-type: x mandatory; scrollbar-width: none;
-      padding-bottom: 8px;
-      cursor: grab;
-    }
-    .reviews-track::-webkit-scrollbar { display: none; }
-    .review-card {
-      min-width: 340px; max-width: 360px;
-      background: white; border-radius: var(--radius-lg);
-      padding: 32px; box-shadow: var(--shadow-md);
-      border: 1px solid var(--gray-mid);
-      scroll-snap-align: start; flex-shrink: 0;
-    }
-    .review-stars { color: #FBBF24; font-size: 1rem; letter-spacing: 2px; margin-bottom: 16px; }
-    .review-text { font-size: 0.9rem; color: var(--navy-mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-    .review-author { display: flex; align-items: center; gap: 12px; }
-    .review-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-weight: 700; font-size: 0.9rem;
-    }
-    .review-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
-    .review-date { font-size: 0.75rem; color: var(--gray-text); }
-    .review-google {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 0.72rem; color: var(--gray-text); margin-top: 14px;
-    }
-    .reviews-nav { display: flex; justify-content: center; gap: 10px; margin-top: 32px; }
-    .reviews-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gray-mid); cursor: pointer; transition: all 0.3s;
-      border: none;
-    }
-    .reviews-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
-
-    /* ─── APPOINTMENT ─── */
-    .appointment {
-      background: linear-gradient(135deg, var(--navy) 0%, #1E3A6E 100%);
-      position: relative; overflow: hidden;
-    }
-    .appointment::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .appointment-inner {
-      max-width: 1200px; margin: 0 auto; padding: 100px 24px;
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;
-    }
-    .appt-left { color: white; }
-    .appt-eyebrow {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(59,130,246,0.9); margin-bottom: 12px;
-    }
-    .appt-h2 {
-      font-family: var(--font-display); font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-      font-weight: 700; color: white; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px;
-    }
-    .appt-sub { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 32px; }
-    .appt-features { display: flex; flex-direction: column; gap: 16px; }
-    .appt-feat {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.88rem; color: rgba(255,255,255,0.8);
-    }
-    .appt-feat-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: rgba(59,130,246,0.25); display: flex; align-items: center; justify-content: center; font-size: 14px;
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
     }
 
-    .calendly-wrap {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      min-height: 600px;
-    }
-    .calendly-inline-widget { min-width: 320px; height: 630px; }
-
-    /* ─── CONTACT ─── */
-    .contact { background: var(--gray-soft); }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
-    }
-    .contact-info { display: flex; flex-direction: column; gap: 20px; }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 20px; background: white;
-      border-radius: var(--radius); border: 1px solid var(--gray-mid);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.25s ease;
-    }
-    .contact-item:hover { box-shadow: var(--shadow-md); border-color: var(--blue-mid); }
-    .contact-item-icon {
-      width: 44px; height: 44px; min-width: 44px;
-      background: var(--blue-light); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; font-size: 20px;
-    }
-    .contact-item-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-text); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
-    .contact-item-val { font-size: 0.95rem; color: var(--navy); font-weight: 500; line-height: 1.5; }
-    .contact-item-val a { color: var(--blue); text-decoration: none; font-weight: 600; }
-    .contact-item-val a:hover { text-decoration: underline; }
-
-    .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
-    .hours-row { font-size: 0.82rem; color: var(--navy-mid); display: flex; justify-content: space-between; gap: 8px; }
-    .hours-row span:last-child { color: var(--gray-text); }
-
-    .map-embed {
-      border-radius: var(--radius-lg); overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--gray-mid);
-      height: 420px;
-    }
-    .map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
-    .call-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: var(--blue);
-      color: white; font-weight: 700; font-size: 1.05rem;
-      padding: 16px; border-radius: var(--radius);
-      text-decoration: none; box-shadow: var(--shadow-blue);
-      transition: all 0.25s ease; margin-top: 4px;
-    }
-    .call-btn:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(59,130,246,0.3); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--navy);
-      padding: 56px 24px 32px;
-      color: rgba(255,255,255,0.6);
-    }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
-      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .footer-brand-name {
-      font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 12px;
-    }
-    .footer-brand-p { font-size: 0.85rem; line-height: 1.65; max-width: 280px; }
-    .footer-col h4 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: white; margin-bottom: 16px; }
-    .footer-col a {
-      display: block; font-size: 0.85rem; color: rgba(255,255,255,0.55);
-      text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
-    }
-    .footer-col a:hover { color: white; }
-    .footer-bottom {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 28px; font-size: 0.8rem;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bottom span { color: rgba(255,255,255,0.35); }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; padding: 60px 24px; }
-      .hero-btns { justify-content: center; }
-      .hero-sub { margin: 0 auto 36px; }
-      .hero-visual { order: -1; }
-      .tooth-container { width: 260px; height: 280px; }
-      .hero-stat-cards { right: 0; bottom: 0; }
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
-      .trust-item + .trust-item::before { display: none; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .about-img-main { aspect-ratio: 16/9; }
-      .appointment-inner { grid-template-columns: 1fr; gap: 40px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .nav-links { display: none; }
-      .nav-mobile-btn { display: flex; }
-    }
-    @media (max-width: 560px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
+    /* FIX 13: Touch target size fix */
+    .nav-mb{min-width:44px;min-height:44px;justify-content:center;align-items:center}
+    .rd{min-width:22px;min-height:22px}
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
+<!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
+  <div class="nav-in">
     <a href="#" class="nav-logo" aria-label="Levin Goldman & Ezra Dental Clinic home">
       <div class="nav-logo-icon" aria-hidden="true">🦷</div>
       <div>
-        <div class="nav-logo-text">Levin Goldman & Ezra</div>
-        <div class="nav-logo-sub">Dental Clinic</div>
+        <div class="nav-logo-t">Levin Goldman &amp; Ezra</div>
+        <div class="nav-logo-s">Dental Clinic</div>
       </div>
     </a>
     <div class="nav-links" role="menubar">
@@ -547,639 +253,375 @@
       <a href="#about" role="menuitem">About</a>
       <a href="#reviews" role="menuitem">Reviews</a>
       <a href="#contact" role="menuitem">Contact</a>
-      <a href="#appointment" class="nav-cta" role="menuitem" onclick="scrollToAppt(event)">Book Appointment</a>
+      <a href="#appointment" class="nav-cta" role="menuitem" onclick="gotoAppt(event)">Book Appointment</a>
     </div>
-    <button class="nav-mobile-btn" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+    <button class="nav-mb" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+<div class="mmenu" id="mmenu" role="dialog" aria-label="Mobile navigation">
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#reviews" onclick="closeMenu()">Reviews</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
-  <a href="#appointment" onclick="closeMenu()" style="color:var(--blue);font-weight:700;">📅 Book Appointment</a>
+  <a href="#appointment" onclick="gotoAppt(event)">📅 Book Appointment</a>
 </div>
 
-<!-- ─── HERO ─── -->
-<section class="hero" aria-label="Welcome to Levin Goldman & Ezra Dental Clinic">
-  <div class="hero-bg-circle c1" aria-hidden="true"></div>
-  <div class="hero-bg-circle c2" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge" role="status" aria-label="Accepting new patients">Accepting New Patients</div>
-      <h1 class="hero-h1">Your Smile Deserves <em>Expert Care</em></h1>
+<!-- HERO -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero-ring r1" aria-hidden="true"></div>
+  <div class="hero-ring r2" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div>
+      <div class="badge" aria-label="Now accepting new patients">Accepting New Patients</div>
+      <!-- FIX 14: h1 is the first heading (sequentially correct) -->
+      <h1>Your Smile Deserves <em>Expert Care</em></h1>
       <p class="hero-sub">Professional dental care for families, cosmetic treatments, and emergency dentistry in Far Rockaway, NY. Trusted by the community for over two decades.</p>
-      <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollToAppt()" aria-label="Book an appointment">
-          <span>📅</span> Book Appointment
-        </button>
-        <a href="tel:+17183276592" class="btn-secondary" aria-label="Call us at 718-327-6592">
-          <span>📞</span> 718-327-6592
-        </a>
+      <div class="btns">
+        <button class="btn-p" onclick="gotoAppt()" aria-label="Book an appointment">📅 Book Appointment</button>
+        <a href="tel:+17183276592" class="btn-s" aria-label="Call 718-327-6592">📞 718-327-6592</a>
       </div>
     </div>
-
-    <div class="hero-visual" aria-hidden="true">
-      <div class="tooth-container">
+    <div class="hero-vis" aria-hidden="true">
+      <div class="tooth-wrap">
         <div class="tooth-glow"></div>
-        <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
-          <!-- Tooth body -->
+        <!-- Inline SVG - no external image request -->
+        <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>
-            <linearGradient id="toothGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
-              <stop offset="50%" style="stop-color:#F0F8FF;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#DBEAFE;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="rootGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E0EEFF;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#BFDBFE;stop-opacity:1" />
-            </linearGradient>
-            <filter id="toothShadow">
-              <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(59,130,246,0.2)" />
-            </filter>
+            <linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="50%" stop-color="#F0F8FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+            <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E0EEFF"/><stop offset="100%" stop-color="#BFDBFE"/></linearGradient>
+            <filter id="ts"><feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="rgba(59,130,246,0.18)"/></filter>
           </defs>
-          <!-- Crown -->
-          <path d="M60 40 C60 20 80 10 100 10 C115 10 125 18 150 18 C175 18 185 10 200 10 C220 10 240 20 240 40 C240 60 230 90 225 120 C220 150 218 170 215 200 L85 200 C82 170 80 150 75 120 C70 90 60 60 60 40Z"
-                fill="url(#toothGrad)" stroke="#BFDBFE" stroke-width="1.5" filter="url(#toothShadow)"/>
-          <!-- Crown highlight -->
-          <path d="M80 35 C80 22 95 15 110 15 C122 15 130 22 130 30 C130 42 120 60 115 80"
-                fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="3" stroke-linecap="round"/>
-          <!-- Crown cusp details -->
-          <path d="M85 200 Q80 230 72 280 Q68 310 80 325 Q92 335 100 330 Q110 335 115 325 Q122 340 135 340 Q148 340 155 325 Q162 340 175 340 Q188 340 195 325 Q200 335 210 330 Q218 335 228 325 Q240 310 236 280 Q228 230 215 200"
-                fill="url(#rootGrad)" stroke="#C7DFF7" stroke-width="1.5"/>
-          <!-- Root details -->
-          <path d="M100 250 Q95 290 88 315" fill="none" stroke="rgba(147,197,253,0.5)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M150 260 Q150 300 148 330" fill="none" stroke="rgba(147,197,253,0.5)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M200 250 Q205 290 212 315" fill="none" stroke="rgba(147,197,253,0.5)" stroke-width="2" stroke-linecap="round"/>
-          <!-- Shine -->
-          <ellipse cx="110" cy="55" rx="22" ry="30" fill="rgba(255,255,255,0.35)" transform="rotate(-15 110 55)"/>
-          <!-- Blue accent ring -->
-          <circle cx="150" cy="170" r="6" fill="#3B82F6" opacity="0.6"/>
-          <circle cx="150" cy="170" r="10" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity="0.3"/>
+          <path d="M60 40C60 20 80 10 100 10C115 10 125 18 150 18C175 18 185 10 200 10C220 10 240 20 240 40C240 60 230 90 225 120C220 150 218 170 215 200L85 200C82 170 80 150 75 120C70 90 60 60 60 40Z" fill="url(#tg)" stroke="#BFDBFE" stroke-width="1.5" filter="url(#ts)"/>
+          <path d="M80 35C80 22 95 15 110 15C122 15 130 22 130 30C130 42 120 60 115 80" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M85 200Q80 230 72 280Q68 310 80 325Q92 335 100 330Q110 335 115 325Q122 340 135 340Q148 340 155 325Q162 340 175 340Q188 340 195 325Q200 335 210 330Q218 335 228 325Q240 310 236 280Q228 230 215 200" fill="url(#rg)" stroke="#C7DFF7" stroke-width="1.5"/>
+          <ellipse cx="110" cy="55" rx="20" ry="28" fill="rgba(255,255,255,0.3)" transform="rotate(-15 110 55)"/>
+          <circle cx="150" cy="170" r="5" fill="#3B82F6" opacity="0.55"/>
+          <circle cx="150" cy="170" r="9" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity="0.25"/>
         </svg>
-        <div class="hero-stat-cards">
-          <div class="stat-card">
-            <div class="stat-icon">⭐</div>
-            <div>
-              <div class="stat-val">5.0 Rating</div>
-              <div class="stat-label">Google Reviews</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">🏆</div>
-            <div>
-              <div class="stat-val">20+ Years</div>
-              <div class="stat-label">Serving Far Rockaway</div>
-            </div>
-          </div>
+        <div class="stat-cards">
+          <div class="sc"><div class="sc-icon">⭐</div><div><div class="sc-v">5.0 Rating</div><div class="sc-l">Google Reviews</div></div></div>
+          <div class="sc"><div class="sc-icon">🏆</div><div><div class="sc-v">20+ Years</div><div class="sc-l">Far Rockaway</div></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── TRUST ─── -->
-<section class="trust" aria-label="Our credentials and achievements">
-  <div class="trust-inner">
-    <div class="trust-grid">
-      <div class="trust-item" data-count="20" data-suffix="+">
-        <div class="trust-icon" aria-hidden="true">🏅</div>
-        <div class="trust-num counter" data-target="20">0<span>+</span></div>
-        <div class="trust-label">Years of Experience</div>
-      </div>
-      <div class="trust-item" data-count="500">
-        <div class="trust-icon" aria-hidden="true">😁</div>
-        <div class="trust-num counter" data-target="500" data-suffix="+">0<span>+</span></div>
-        <div class="trust-label">Happy Patients</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon" aria-hidden="true">🔬</div>
-        <div class="trust-num">Modern</div>
-        <div class="trust-label">Dental Technology</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon" aria-hidden="true">🚨</div>
-        <div class="trust-num">Same-<span>Day</span></div>
-        <div class="trust-label">Emergency Appointments</div>
-      </div>
+<!-- TRUST -->
+<section class="trust" aria-label="Our credentials">
+  <div class="trust-g">
+    <div class="ti" data-delay="0">
+      <div class="ti-icon" aria-hidden="true">🏅</div>
+      <div class="ti-n" data-target="20">0<span>+</span></div>
+      <div class="ti-l">Years of Experience</div>
+    </div>
+    <div class="ti" data-delay="100">
+      <div class="ti-icon" aria-hidden="true">😁</div>
+      <div class="ti-n" data-target="500">0<span>+</span></div>
+      <div class="ti-l">Happy Patients</div>
+    </div>
+    <div class="ti" data-delay="200">
+      <div class="ti-icon" aria-hidden="true">🔬</div>
+      <div class="ti-n">Modern</div>
+      <div class="ti-l">Dental Technology</div>
+    </div>
+    <div class="ti" data-delay="300">
+      <div class="ti-icon" aria-hidden="true">🚨</div>
+      <div class="ti-n">Same-<span>Day</span></div>
+      <div class="ti-l">Emergency Appointments</div>
     </div>
   </div>
 </section>
 
-<!-- ─── SERVICES ─── -->
-<section class="section services" id="services" aria-label="Our dental services">
-  <div class="section-inner">
-    <div class="section-header fade-up">
-      <div class="section-eyebrow">What We Offer</div>
-      <h2 class="section-h2">Comprehensive Dental Care</h2>
-      <p class="section-sub">From routine cleanings to full smile transformations — we provide everything your family needs under one roof.</p>
+<!-- SERVICES -->
+<section class="sec sv" id="services" aria-label="Our services">
+  <div class="si">
+    <div class="sh fu">
+      <div class="ey">What We Offer</div>
+      <!-- FIX 15: h2 after h1, correct hierarchy -->
+      <h2>Comprehensive Dental Care</h2>
+      <p class="sub">From routine cleanings to full smile transformations — everything your family needs under one roof.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card fade-up" style="transition-delay:0.05s">
-        <div class="service-icon" aria-hidden="true">🦷</div>
-        <h3 class="service-h">General Dentistry</h3>
-        <p class="service-p">Comprehensive exams, cleanings, fillings, and preventive care to keep your smile healthy for life. We accept most insurance plans.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:0.10s">
-        <div class="service-icon" aria-hidden="true">✨</div>
-        <h3 class="service-h">Cosmetic Dentistry</h3>
-        <p class="service-p">Veneers, bonding, and smile makeovers designed to give you the confidence of a perfect smile that looks and feels completely natural.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:0.15s">
-        <div class="service-icon" aria-hidden="true">💎</div>
-        <h3 class="service-h">Teeth Whitening</h3>
-        <p class="service-p">Professional in-office whitening treatments that deliver dramatic, lasting results — multiple shades brighter in a single visit.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:0.20s">
-        <div class="service-icon" aria-hidden="true">🔩</div>
-        <h3 class="service-h">Dental Implants</h3>
-        <p class="service-p">State-of-the-art implants that look, feel, and function like your natural teeth — the gold standard for replacing missing teeth.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:0.25s">
-        <div class="service-icon" aria-hidden="true">🩺</div>
-        <h3 class="service-h">Root Canal Treatment</h3>
-        <p class="service-p">Comfortable, precision root canal therapy using modern techniques — saving your natural tooth and relieving pain quickly and effectively.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:0.30s">
-        <div class="service-icon" aria-hidden="true">🚨</div>
-        <h3 class="service-h">Emergency Dental Care</h3>
-        <p class="service-p">Dental emergencies can't wait. We offer same-day appointments for urgent care — call us and we'll see you as soon as possible.</p>
-        <div class="service-arrow">Learn more →</div>
-      </div>
+    <div class="sg">
+      <div class="scard fu" style="transition-delay:.06s"><div class="si-ico" aria-hidden="true">🦷</div><h3 class="sh3">General Dentistry</h3><p class="sp">Comprehensive exams, cleanings, fillings, and preventive care to keep your smile healthy for life.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
+      <div class="scard fu" style="transition-delay:.12s"><div class="si-ico" aria-hidden="true">✨</div><h3 class="sh3">Cosmetic Dentistry</h3><p class="sp">Veneers, bonding, and smile makeovers designed to give you the confidence of a perfect, natural smile.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
+      <div class="scard fu" style="transition-delay:.18s"><div class="si-ico" aria-hidden="true">💎</div><h3 class="sh3">Teeth Whitening</h3><p class="sp">Professional in-office whitening that delivers dramatic, lasting results — multiple shades brighter in one visit.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
+      <div class="scard fu" style="transition-delay:.24s"><div class="si-ico" aria-hidden="true">🔩</div><h3 class="sh3">Dental Implants</h3><p class="sp">State-of-the-art implants that look, feel, and function like your natural teeth — the gold standard solution.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
+      <div class="scard fu" style="transition-delay:.30s"><div class="si-ico" aria-hidden="true">🩺</div><h3 class="sh3">Root Canal Treatment</h3><p class="sp">Comfortable, precision root canal therapy using modern techniques — saving your tooth and relieving pain fast.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
+      <div class="scard fu" style="transition-delay:.36s"><div class="si-ico" aria-hidden="true">🚨</div><h3 class="sh3">Emergency Dental Care</h3><p class="sp">Same-day appointments for urgent dental care. Call us and we'll see you as soon as possible.</p><div class="sarr" aria-hidden="true">Learn more →</div></div>
     </div>
   </div>
 </section>
 
-<!-- ─── ABOUT ─── -->
-<section class="section" id="about" aria-label="About our clinic">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-img-wrap fade-up">
-        <div class="about-img-main">
-          <div class="about-img-bg">
-            <svg viewBox="0 0 400 500" width="80%" height="80%" aria-hidden="true">
-              <!-- Stylized clinic illustration -->
+<!-- ABOUT -->
+<section class="sec" id="about" aria-label="About our clinic">
+  <div class="si">
+    <div class="about-g">
+      <div class="fu">
+        <div class="aimg" style="overflow:visible">
+          <div style="width:100%;height:100%;border-radius:var(--rl);overflow:hidden;background:linear-gradient(160deg,#DBEAFE,#EFF6FF);display:flex;align-items:center;justify-content:center">
+            <!-- Inline clinic SVG illustration -->
+            <svg viewBox="0 0 360 440" width="82%" height="82%" aria-hidden="true">
               <defs>
-                <linearGradient id="bldg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#DBEAFE"/>
-                  <stop offset="100%" style="stop-color:#BFDBFE"/>
-                </linearGradient>
-                <linearGradient id="bldg2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#93C5FD"/>
-                  <stop offset="100%" style="stop-color:#60A5FA"/>
-                </linearGradient>
+                <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#DBEAFE"/><stop offset="100%" stop-color="#BFDBFE"/></linearGradient>
+                <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93C5FD"/><stop offset="100%" stop-color="#60A5FA"/></linearGradient>
               </defs>
-              <!-- Background -->
-              <rect x="30" y="100" width="340" height="300" rx="16" fill="url(#bldg)"/>
-              <!-- Building details -->
-              <rect x="30" y="100" width="340" height="40" rx="12" fill="url(#bldg2)"/>
-              <!-- Windows -->
-              <rect x="70" y="180" width="60" height="60" rx="6" fill="white" opacity="0.8"/>
-              <rect x="170" y="180" width="60" height="60" rx="6" fill="white" opacity="0.8"/>
-              <rect x="270" y="180" width="60" height="60" rx="6" fill="white" opacity="0.8"/>
-              <rect x="70" y="270" width="60" height="60" rx="6" fill="white" opacity="0.8"/>
-              <rect x="270" y="270" width="60" height="60" rx="6" fill="white" opacity="0.8"/>
-              <!-- Door -->
-              <rect x="155" y="290" width="90" height="110" rx="8" fill="white" opacity="0.9"/>
-              <circle cx="200" cy="345" r="5" fill="#3B82F6"/>
-              <!-- Cross / medical logo -->
-              <rect x="182" y="112" width="36" height="16" rx="4" fill="white"/>
-              <rect x="192" y="102" width="16" height="36" rx="4" fill="white"/>
-              <!-- Clouds / sky dots -->
-              <circle cx="340" cy="50" r="30" fill="#EFF6FF" opacity="0.7"/>
-              <circle cx="370" cy="45" r="22" fill="#EFF6FF" opacity="0.7"/>
-              <circle cx="60" cy="60" r="20" fill="#EFF6FF" opacity="0.5"/>
+              <rect x="20" y="90" width="320" height="280" rx="14" fill="url(#bg1)"/>
+              <rect x="20" y="90" width="320" height="42" rx="12" fill="url(#bg2)"/>
+              <rect x="55" y="165" width="55" height="55" rx="6" fill="white" opacity=".85"/>
+              <rect x="152" y="165" width="55" height="55" rx="6" fill="white" opacity=".85"/>
+              <rect x="249" y="165" width="55" height="55" rx="6" fill="white" opacity=".85"/>
+              <rect x="55" y="248" width="55" height="55" rx="6" fill="white" opacity=".85"/>
+              <rect x="249" y="248" width="55" height="55" rx="6" fill="white" opacity=".85"/>
+              <rect x="138" y="278" width="84" height="92" rx="8" fill="white" opacity=".92"/>
+              <circle cx="180" cy="324" r="5" fill="#3B82F6"/>
+              <rect x="164" y="100" width="32" height="14" rx="4" fill="white"/>
+              <rect x="173" y="91" width="14" height="32" rx="4" fill="white"/>
             </svg>
           </div>
-        </div>
-        <div class="about-pill" aria-label="Over 20 years of trusted care">
-          <div class="about-pill-icon" aria-hidden="true">🏆</div>
-          <div class="about-pill-text">
-            <strong>20+ Years</strong>
-            <span>Trusted dental care</span>
-          </div>
+          <div class="apill"><span style="font-size:1.4rem" aria-hidden="true">🏆</span><div><strong>20+ Years</strong><span>Trusted care</span></div></div>
         </div>
       </div>
-
-      <div class="fade-up" style="transition-delay:0.15s">
-        <div class="section-eyebrow">Our Story</div>
-        <h2 class="section-h2">Dentistry Built on Trust & Expertise</h2>
-        <p style="font-size:0.95rem;color:var(--gray-text);line-height:1.75;margin-bottom:20px;">
-          Levin Goldman & Ezra Dental Clinic has served the Far Rockaway community for over two decades. Founded on the principle that exceptional dental care should be accessible, comfortable, and compassionate, our clinic has grown into a trusted pillar of the neighborhood.
-        </p>
-        <p style="font-size:0.95rem;color:var(--gray-text);line-height:1.75;margin-bottom:28px;">
-          Our mission is simple: treat every patient like family. We combine cutting-edge dental technology with a gentle, patient-first approach — because we know that great dental health is the foundation of overall wellness.
-        </p>
-        <div class="about-checks">
-          <div class="about-check">
-            <div class="check-dot" aria-hidden="true">✓</div>
-            <p><strong>State-of-the-art equipment</strong> — digital X-rays, 3D imaging, and the latest in painless dentistry.</p>
-          </div>
-          <div class="about-check">
-            <div class="check-dot" aria-hidden="true">✓</div>
-            <p><strong>Patient-centered care</strong> — unhurried appointments, clear communication, and zero judgment.</p>
-          </div>
-          <div class="about-check">
-            <div class="check-dot" aria-hidden="true">✓</div>
-            <p><strong>Accepting most insurance</strong> — including Medicaid, Medicare, and all major dental plans.</p>
-          </div>
-          <div class="about-check">
-            <div class="check-dot" aria-hidden="true">✓</div>
-            <p><strong>Same-day emergency slots</strong> — because dental pain shouldn't have to wait.</p>
-          </div>
+      <div class="fu" style="transition-delay:.15s">
+        <div class="ey">Our Story</div>
+        <h2>Dentistry Built on Trust &amp; Expertise</h2>
+        <p style="font-size:.93rem;color:var(--gt);line-height:1.75;margin-bottom:16px">Levin Goldman &amp; Ezra Dental Clinic has served the Far Rockaway community for over two decades. Founded on the principle that exceptional dental care should be accessible, comfortable, and compassionate.</p>
+        <p style="font-size:.93rem;color:var(--gt);line-height:1.75;margin-bottom:24px">Our mission: treat every patient like family. We combine cutting-edge dental technology with a gentle, patient-first approach — because great dental health is the foundation of overall wellness.</p>
+        <div class="achk">
+          <div class="achk-row"><div class="chk" aria-hidden="true">✓</div><p><strong>State-of-the-art equipment</strong> — digital X-rays, 3D imaging, and the latest in painless dentistry.</p></div>
+          <div class="achk-row"><div class="chk" aria-hidden="true">✓</div><p><strong>Patient-centered care</strong> — unhurried appointments, clear communication, zero judgment.</p></div>
+          <div class="achk-row"><div class="chk" aria-hidden="true">✓</div><p><strong>Accepting most insurance</strong> — including Medicaid, Medicare, and all major dental plans.</p></div>
+          <div class="achk-row"><div class="chk" aria-hidden="true">✓</div><p><strong>Same-day emergency slots</strong> — dental pain shouldn't have to wait.</p></div>
         </div>
-        <button class="btn-primary" style="margin-top:32px" onclick="scrollToAppt()" aria-label="Book your first appointment">
-          Schedule a Visit →
-        </button>
+        <button class="btn-p" style="margin-top:28px" onclick="gotoAppt()">Schedule a Visit →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── REVIEWS ─── -->
-<section class="section reviews" id="reviews" aria-label="Patient testimonials and reviews">
-  <div class="section-inner">
-    <div class="section-header fade-up">
-      <div class="section-eyebrow">Patient Reviews</div>
-      <h2 class="section-h2">What Our Patients Say</h2>
-      <p class="section-sub">Real reviews from real patients in the Far Rockaway community. We're proud of the trust we've earned.</p>
+<!-- REVIEWS -->
+<section class="sec rv" id="reviews" aria-label="Patient reviews">
+  <div class="si">
+    <div class="sh fu">
+      <div class="ey">Patient Reviews</div>
+      <h2>What Our Patients Say</h2>
+      <p class="sub">Real reviews from real patients in the Far Rockaway community.</p>
     </div>
-    <div class="reviews-track-wrap">
-      <div class="reviews-track" id="reviewsTrack" role="list" aria-label="Patient reviews">
-        <div class="review-card fade-up" role="listitem">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="review-text">"I've been coming here for years and I always leave with a smile — literally. The staff is incredibly gentle and professional. Dr. Goldman made my root canal completely painless. Highly recommend to anyone in the area!"</p>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true">MR</div>
-            <div>
-              <div class="review-name">Maria R.</div>
-              <div class="review-date">Far Rockaway, NY</div>
-            </div>
-          </div>
-          <div class="review-google" aria-label="Verified Google review">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Verified Google Review
-          </div>
-        </div>
-
-        <div class="review-card fade-up" role="listitem" style="transition-delay:0.1s">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="review-text">"Best dental experience I've ever had. The office is spotless, modern, and the whole team makes you feel so comfortable. Got my veneers done here and I couldn't be happier. My smile has completely transformed!"</p>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true">JT</div>
-            <div>
-              <div class="review-name">James T.</div>
-              <div class="review-date">Far Rockaway, NY</div>
-            </div>
-          </div>
-          <div class="review-google" aria-label="Verified Google review">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Verified Google Review
-          </div>
-        </div>
-
-        <div class="review-card fade-up" role="listitem" style="transition-delay:0.2s">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="review-text">"I had a dental emergency on a Monday morning and they saw me within two hours. The whole team went above and beyond. I've since moved my entire family here. We drive 30 minutes because it's absolutely worth it."</p>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true">SL</div>
-            <div>
-              <div class="review-name">Sandra L.</div>
-              <div class="review-date">Jamaica, NY</div>
-            </div>
-          </div>
-          <div class="review-google" aria-label="Verified Google review">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Verified Google Review
-          </div>
-        </div>
-
-        <div class="review-card fade-up" role="listitem" style="transition-delay:0.3s">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="review-text">"My kids were terrified of the dentist until we started coming here. Dr. Levin has a gift for making children feel at ease. Now they actually look forward to their appointments. This place is truly special."</p>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true">DP</div>
-            <div>
-              <div class="review-name">David P.</div>
-              <div class="review-date">Far Rockaway, NY</div>
-            </div>
-          </div>
-          <div class="review-google" aria-label="Verified Google review">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Verified Google Review
-          </div>
-        </div>
-
-        <div class="review-card fade-up" role="listitem" style="transition-delay:0.4s">
-          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="review-text">"Got my dental implants done here after years of hesitation. The process was explained thoroughly at every step. The result is indistinguishable from my natural teeth. Worth every penny and more."</p>
-          <div class="review-author">
-            <div class="review-avatar" aria-hidden="true">AK</div>
-            <div>
-              <div class="review-name">Aisha K.</div>
-              <div class="review-date">Rockaway Beach, NY</div>
-            </div>
-          </div>
-          <div class="review-google" aria-label="Verified Google review">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-            Verified Google Review
-          </div>
-        </div>
+    <div style="overflow:hidden;margin:0 -24px;padding:0 24px">
+      <div class="rt" id="rt" role="list">
+        <div class="rc fu" role="listitem"><div class="rstar" aria-label="5 stars">★★★★★</div><p class="rtext">"I've been coming here for years and I always leave with a smile — literally. Dr. Goldman made my root canal completely painless. Highly recommend to anyone in the area!"</p><div class="rauthor"><div class="rav">MR</div><div><div class="rname">Maria R.</div><div class="rdate">Far Rockaway, NY</div></div></div></div>
+        <div class="rc fu" role="listitem" style="transition-delay:.1s"><div class="rstar" aria-label="5 stars">★★★★★</div><p class="rtext">"Best dental experience I've ever had. The office is spotless and modern. Got my veneers done here and my smile has completely transformed!"</p><div class="rauthor"><div class="rav">JT</div><div><div class="rname">James T.</div><div class="rdate">Far Rockaway, NY</div></div></div></div>
+        <div class="rc fu" role="listitem" style="transition-delay:.2s"><div class="rstar" aria-label="5 stars">★★★★★</div><p class="rtext">"I had a dental emergency on a Monday morning and they saw me within two hours. I've since moved my entire family here. Absolutely worth it."</p><div class="rauthor"><div class="rav">SL</div><div><div class="rname">Sandra L.</div><div class="rdate">Jamaica, NY</div></div></div></div>
+        <div class="rc fu" role="listitem" style="transition-delay:.3s"><div class="rstar" aria-label="5 stars">★★★★★</div><p class="rtext">"My kids were terrified of the dentist until we started coming here. Dr. Levin has a gift for making children feel at ease. Now they actually look forward to appointments!"</p><div class="rauthor"><div class="rav">DP</div><div><div class="rname">David P.</div><div class="rdate">Far Rockaway, NY</div></div></div></div>
+        <div class="rc fu" role="listitem" style="transition-delay:.4s"><div class="rstar" aria-label="5 stars">★★★★★</div><p class="rtext">"Got my dental implants done here after years of hesitation. The result is indistinguishable from my natural teeth. Worth every penny."</p><div class="rauthor"><div class="rav">AK</div><div><div class="rname">Aisha K.</div><div class="rdate">Rockaway Beach, NY</div></div></div></div>
       </div>
     </div>
-    <div class="reviews-nav" role="group" aria-label="Review navigation">
-      <button class="reviews-dot active" onclick="scrollReviews(0)" aria-label="Review set 1"></button>
-      <button class="reviews-dot" onclick="scrollReviews(1)" aria-label="Review set 2"></button>
-      <button class="reviews-dot" onclick="scrollReviews(2)" aria-label="Review set 3"></button>
+    <div class="rdots" role="group" aria-label="Review navigation">
+      <button class="rd active" onclick="scrollRv(0)" aria-label="Review 1"></button>
+      <button class="rd" onclick="scrollRv(1)" aria-label="Review 2"></button>
+      <button class="rd" onclick="scrollRv(2)" aria-label="Review 3"></button>
     </div>
   </div>
 </section>
 
-<!-- ─── APPOINTMENT ─── -->
-<section class="appointment" id="appointment" aria-label="Book your appointment">
-  <div class="appointment-inner">
-    <div class="appt-left fade-up">
-      <div class="appt-eyebrow">Online Scheduling</div>
-      <h2 class="appt-h2">Schedule Your Visit Today</h2>
-      <p class="appt-sub">Pick a date and time that works for you — directly in your browser. No phone tag, no waiting. Confirmed instantly.</p>
-      <div class="appt-features">
-        <div class="appt-feat">
-          <div class="appt-feat-icon" aria-hidden="true">📅</div>
-          <span>Choose your preferred date & time</span>
-        </div>
-        <div class="appt-feat">
-          <div class="appt-feat-icon" aria-hidden="true">✅</div>
-          <span>Instant booking confirmation via email</span>
-        </div>
-        <div class="appt-feat">
-          <div class="appt-feat-icon" aria-hidden="true">🔔</div>
-          <span>Automatic reminders before your visit</span>
-        </div>
-        <div class="appt-feat">
-          <div class="appt-feat-icon" aria-hidden="true">🆓</div>
-          <span>Free consultation for new patients</span>
-        </div>
+<!-- APPOINTMENT -->
+<section class="appt" id="appointment" aria-label="Book appointment">
+  <div class="appt-in">
+    <div class="al fu">
+      <div class="aey">Online Scheduling</div>
+      <h2 class="ah2">Schedule Your Visit Today</h2>
+      <p class="asub">Pick a date and time that works for you — directly in your browser. No phone tag. Confirmed instantly.</p>
+      <div class="af">
+        <div class="af-row"><div class="af-ico">📅</div><span>Choose your preferred date &amp; time</span></div>
+        <div class="af-row"><div class="af-ico">✅</div><span>Instant confirmation via email</span></div>
+        <div class="af-row"><div class="af-ico">🔔</div><span>Automatic reminders before your visit</span></div>
+        <div class="af-row"><div class="af-ico">🆓</div><span>Free consultation for new patients</span></div>
       </div>
-      <div style="margin-top:36px; padding: 20px; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.25); border-radius: 12px;">
-        <p style="font-size:0.85rem;color:rgba(255,255,255,0.7);line-height:1.6;">
-          <strong style="color:white;">Need emergency care?</strong><br>
-          Call us directly at <a href="tel:+17183276592" style="color:#60A5FA;font-weight:700;">718-327-6592</a> for same-day emergency appointments. We're here for you.
-        </p>
+      <div style="margin-top:28px;padding:18px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.22);border-radius:12px">
+        <p style="font-size:.83rem;color:rgba(255,255,255,.68);line-height:1.6"><strong style="color:#fff">Need emergency care?</strong><br>Call us at <a href="tel:+17183276592" style="color:#60A5FA;font-weight:700">718-327-6592</a> for same-day appointments.</p>
       </div>
     </div>
-
-    <div class="calendly-wrap fade-up" style="transition-delay:0.2s" role="main" aria-label="Appointment scheduler">
-      <!-- Calendly inline widget -->
-      <div class="calendly-inline-widget" 
-           data-url="https://calendly.com/levingoldmanezra/dental-appointment?hide_gdpr_banner=1&background_color=0f172a&text_color=ffffff&primary_color=3b82f6"
-           style="min-width:320px;height:630px;">
+    <!-- FIX 16: Calendly loaded lazily on demand, not render-blocking -->
+    <div class="cal-wrap fu" style="transition-delay:.2s" id="calWrap">
+      <div class="cal-ph" id="calPh">
+        <div style="font-size:2.8rem" aria-hidden="true">📅</div>
+        <h3>Book Your Appointment</h3>
+        <p>Click below to open the scheduling calendar and pick a time that works for you.</p>
+        <button class="btn-p" onclick="loadCalendly()" aria-label="Open booking calendar" style="font-size:1rem;padding:14px 32px">Open Booking Calendar</button>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.35)">Powered by Calendly · Free · Secure</p>
       </div>
-      <!-- Fallback if Calendly not configured -->
-      <noscript>
-        <div style="padding:40px;text-align:center;color:white;">
-          <p>Please enable JavaScript to use the online booking system.</p>
-          <p>Or call us at <a href="tel:+17183276592" style="color:#60A5FA">718-327-6592</a></p>
-        </div>
-      </noscript>
     </div>
   </div>
 </section>
 
-<!-- ─── CONTACT ─── -->
-<section class="section contact" id="contact" aria-label="Contact information and location">
-  <div class="section-inner">
-    <div class="section-header fade-up">
-      <div class="section-eyebrow">Find Us</div>
-      <h2 class="section-h2">Visit Our Clinic</h2>
-      <p class="section-sub">Conveniently located in the heart of Far Rockaway. We're easy to find and always happy to see you.</p>
+<!-- CONTACT -->
+<section class="sec ct" id="contact" aria-label="Contact and location">
+  <div class="si">
+    <div class="sh fu">
+      <div class="ey">Find Us</div>
+      <h2>Visit Our Clinic</h2>
+      <p class="sub">Conveniently located in the heart of Far Rockaway.</p>
     </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <a href="tel:+17183276592" class="call-btn" aria-label="Call us now at 718-327-6592">
-          <span aria-hidden="true">📞</span> Call Now: 718-327-6592
-        </a>
-
-        <div class="contact-item fade-up">
-          <div class="contact-item-icon" aria-hidden="true">📍</div>
+    <div class="ct-g">
+      <div class="ci">
+        <a href="tel:+17183276592" class="call-b" aria-label="Call 718-327-6592 now">📞 Call Now: 718-327-6592</a>
+        <div class="citem fu"><div class="cico" aria-hidden="true">📍</div><div><div class="clabel">Address</div><div class="cval">13-01 Cornaga Ave<br>Far Rockaway, NY 11691</div></div></div>
+        <div class="citem fu" style="transition-delay:.06s"><div class="cico" aria-hidden="true">📞</div><div><div class="clabel">Phone</div><div class="cval"><a href="tel:+17183276592">+1 (718) 327-6592</a></div></div></div>
+        <div class="citem fu" style="transition-delay:.12s">
+          <div class="cico" aria-hidden="true">🕐</div>
           <div>
-            <div class="contact-item-label">Address</div>
-            <div class="contact-item-val">
-              13-01 Cornaga Ave<br>Far Rockaway, NY 11691
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-item fade-up" style="transition-delay:0.05s">
-          <div class="contact-item-icon" aria-hidden="true">📞</div>
-          <div>
-            <div class="contact-item-label">Phone</div>
-            <div class="contact-item-val"><a href="tel:+17183276592">+1 (718) 327-6592</a></div>
-          </div>
-        </div>
-
-        <div class="contact-item fade-up" style="transition-delay:0.10s">
-          <div class="contact-item-icon" aria-hidden="true">🕐</div>
-          <div>
-            <div class="contact-item-label">Business Hours</div>
-            <div class="contact-item-val">
-              <div class="hours-grid">
-                <div class="hours-row"><span>Monday–Friday</span><span>9:00 AM – 6:00 PM</span></div>
-                <div class="hours-row"><span>Saturday</span><span>9:00 AM – 3:00 PM</span></div>
-                <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
-                <div class="hours-row"><span>Emergencies</span><span>Call anytime</span></div>
+            <div class="clabel">Business Hours</div>
+            <div class="cval">
+              <div class="hrs">
+                <div class="hr"><span>Mon–Fri</span><span>9 AM – 6 PM</span></div>
+                <div class="hr"><span>Saturday</span><span>9 AM – 3 PM</span></div>
+                <div class="hr"><span>Sunday</span><span>Closed</span></div>
+                <div class="hr"><span>Emergencies</span><span>Call anytime</span></div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="contact-item fade-up" style="transition-delay:0.15s">
-          <div class="contact-item-icon" aria-hidden="true">🚌</div>
-          <div>
-            <div class="contact-item-label">Getting Here</div>
-            <div class="contact-item-val" style="font-size:0.85rem;color:var(--gray-text)">
-              LIRR Far Rockaway station — 5 min walk.<br>
-              Street parking available on Cornaga Ave.
-            </div>
-          </div>
-        </div>
+        <div class="citem fu" style="transition-delay:.18s"><div class="cico" aria-hidden="true">🚌</div><div><div class="clabel">Getting Here</div><div class="cval" style="font-size:.83rem;color:var(--gt);font-weight:400">LIRR Far Rockaway — 5 min walk.<br>Street parking on Cornaga Ave.</div></div></div>
       </div>
-
-      <div class="map-embed fade-up" style="transition-delay:0.2s">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.1234567890123!2d-73.75500!3d40.60500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c26b0000000001%3A0x1!2s13-01+Cornaga+Ave%2C+Far+Rockaway%2C+NY+11691!5e0!3m2!1sen!2sus!4v1234567890"
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Levin Goldman & Ezra Dental Clinic location map"
-          aria-label="Map showing clinic location at 13-01 Cornaga Ave, Far Rockaway, NY">
-        </iframe>
+      <!-- FIX 17: lazy load map iframe -->
+      <div class="map-w fu" style="transition-delay:.2s">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.12!2d-73.7550!3d40.6050!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c26b00000001%3A0x1!2s13-01+Cornaga+Ave%2C+Far+Rockaway%2C+NY+11691!5e0!3m2!1sen!2sus!4v1234567890" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Clinic location" aria-label="Map of clinic at 13-01 Cornaga Ave Far Rockaway"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
+<!-- FOOTER -->
 <footer aria-label="Site footer">
-  <div class="footer-inner">
-    <div class="footer-top">
+  <div class="ft">
+    <div class="ft-top">
       <div>
-        <div class="footer-brand-name">Levin Goldman & Ezra Dental Clinic</div>
-        <p class="footer-brand-p">Professional dental care for families and individuals in Far Rockaway, NY. Serving our community with expertise and compassion since 2004.</p>
-        <div style="margin-top:20px;display:flex;gap:12px">
-          <a href="tel:+17183276592" style="display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:50px;padding:8px 16px;font-size:0.82rem;color:#93C5FD;text-decoration:none;font-weight:600;transition:all 0.2s" aria-label="Call us">📞 Call Us</a>
-          <a href="#appointment" onclick="scrollToAppt(event)" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);border:1px solid var(--blue);border-radius:50px;padding:8px 16px;font-size:0.82rem;color:white;text-decoration:none;font-weight:600;transition:all 0.2s" aria-label="Book appointment">📅 Book Now</a>
+        <div class="ft-n">Levin Goldman &amp; Ezra Dental Clinic</div>
+        <p class="ft-p">Professional dental care for families in Far Rockaway, NY. Serving our community with expertise and compassion since 2004.</p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <a href="tel:+17183276592" style="display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.28);border-radius:50px;padding:7px 14px;font-size:.8rem;color:#93C5FD;text-decoration:none;font-weight:700">📞 Call Us</a>
+          <a href="#appointment" onclick="gotoAppt(event)" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);border-radius:50px;padding:7px 14px;font-size:.8rem;color:#fff;text-decoration:none;font-weight:700">📅 Book Now</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="#services">General Dentistry</a>
-        <a href="#services">Cosmetic Dentistry</a>
-        <a href="#services">Teeth Whitening</a>
-        <a href="#services">Dental Implants</a>
-        <a href="#services">Root Canal</a>
-        <a href="#services">Emergency Care</a>
-      </div>
-      <div class="footer-col">
-        <h4>Clinic</h4>
-        <a href="#about">About Us</a>
-        <a href="#reviews">Patient Reviews</a>
-        <a href="#contact">Location</a>
-        <a href="#appointment" onclick="scrollToAppt(event)">Book Appointment</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="tel:+17183276592">718-327-6592</a>
-        <a href="#">13-01 Cornaga Ave</a>
-        <a href="#">Far Rockaway, NY 11691</a>
-        <a href="#contact">Business Hours</a>
-      </div>
+      <div class="ft-col"><h4>Services</h4><a href="#services">General Dentistry</a><a href="#services">Cosmetic Dentistry</a><a href="#services">Teeth Whitening</a><a href="#services">Dental Implants</a><a href="#services">Root Canal</a><a href="#services">Emergency Care</a></div>
+      <div class="ft-col"><h4>Clinic</h4><a href="#about">About Us</a><a href="#reviews">Reviews</a><a href="#contact">Location</a><a href="#appointment" onclick="gotoAppt(event)">Book Appointment</a></div>
+      <div class="ft-col"><h4>Contact</h4><a href="tel:+17183276592">718-327-6592</a><a href="#contact">13-01 Cornaga Ave</a><a href="#contact">Far Rockaway, NY 11691</a><a href="#contact">Business Hours</a></div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2025 Levin Goldman & Ezra Dental Clinic. All rights reserved.</span>
-      <span>13-01 Cornaga Ave, Far Rockaway, NY 11691 · <a href="tel:+17183276592" style="color:rgba(255,255,255,0.5);text-decoration:none;">718-327-6592</a></span>
+    <div class="ft-bot">
+      <span>© 2025 Levin Goldman &amp; Ezra Dental Clinic. All rights reserved.</span>
+      <span>13-01 Cornaga Ave, Far Rockaway, NY 11691 · <a href="tel:+17183276592">718-327-6592</a></span>
     </div>
   </div>
 </footer>
 
+<!-- FIX 18: All JS deferred, non-blocking -->
 <script>
-  // ─ Mobile menu ─
-  function toggleMenu(btn) {
-    const menu = document.getElementById('mobileMenu');
-    const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
-    const spans = btn.querySelectorAll('span');
-    if (open) {
-      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-    } else {
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    }
+(function(){
+  // Mobile menu
+  function toggleMenu(btn){
+    var m=document.getElementById('mmenu'),o=m.classList.toggle('open');
+    btn.setAttribute('aria-expanded',o);
+    var s=btn.querySelectorAll('span');
+    if(o){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}
+    else{s.forEach(function(x){x.style.transform='';x.style.opacity=''})}
   }
-  function closeMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.remove('open');
-    const btn = document.querySelector('.nav-mobile-btn');
-    if (btn) {
-      btn.setAttribute('aria-expanded', 'false');
-      btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    }
-  }
+  window.toggleMenu=toggleMenu;
 
-  // ─ Scroll to appointment ─
-  function scrollToAppt(e) {
-    if (e) e.preventDefault();
-    document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
-    closeMenu();
+  function closeMenu(){
+    var m=document.getElementById('mmenu');m.classList.remove('open');
+    var btn=document.querySelector('.nav-mb');
+    if(btn){btn.setAttribute('aria-expanded','false');btn.querySelectorAll('span').forEach(function(x){x.style.transform='';x.style.opacity=''})}
   }
+  window.closeMenu=closeMenu;
 
-  // ─ Intersection Observer for animations ─
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  function gotoAppt(e){if(e)e.preventDefault();document.getElementById('appointment').scrollIntoView({behavior:'smooth'});closeMenu()}
+  window.gotoAppt=gotoAppt;
+
+  // Nav shadow
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.style.boxShadow=window.scrollY>20?'0 2px 20px rgba(15,23,42,.08)':'none'},{passive:true});
+
+  // Intersection Observer - animations + counters
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;
+      if(el.classList.contains('ti')){
+        var delay=parseInt(el.dataset.delay||0);
+        setTimeout(function(){
+          el.classList.add('vis');
+          var cn=el.querySelector('[data-target]');
+          if(cn){animCount(cn,parseInt(cn.dataset.target))}
+        },delay);
+      } else {
+        el.classList.add('vis');
       }
+      io.unobserve(el);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  },{threshold:0.12,rootMargin:'0px 0px -32px 0px'});
 
-  document.querySelectorAll('.fade-up, .trust-item').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fu,.ti').forEach(function(el){io.observe(el)});
 
-  // ─ Counter animation ─
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.getAttribute('data-target'));
-        if (!target) return;
-        let start = 0;
-        const duration = 1800;
-        const step = (timestamp) => {
-          if (!start) start = timestamp;
-          const progress = Math.min((timestamp - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(eased * target);
-          const suffix = el.querySelector('span');
-          el.childNodes[0].textContent = current;
-          if (progress < 1) requestAnimationFrame(step);
-          else el.childNodes[0].textContent = target;
-        };
-        requestAnimationFrame(step);
-        counterObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
-
-  // ─ Reviews drag scroll ─
-  const track = document.getElementById('reviewsTrack');
-  let isDown = false, startX, scrollLeft;
-  track.addEventListener('mousedown', e => { isDown = true; track.style.cursor = 'grabbing'; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
-  track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
-  track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
-
-  function scrollReviews(idx) {
-    const cards = track.querySelectorAll('.review-card');
-    const dots = document.querySelectorAll('.reviews-dot');
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    if (cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  function animCount(el,target){
+    var start=null,dur=1600;
+    var suffix=el.querySelector('span');
+    var suffixHTML=suffix?suffix.outerHTML:'';
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.innerHTML=Math.floor(eased*target)+suffixHTML;
+      if(p<1)requestAnimationFrame(step);
+      else el.innerHTML=target+suffixHTML;
+    }
+    requestAnimationFrame(step);
   }
 
-  // ─ Nav shadow on scroll ─
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('nav');
-    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(15,23,42,0.08)' : 'none';
-  }, { passive: true });
+  // Reviews drag scroll
+  var rt=document.getElementById('rt');
+  if(rt){
+    var down=false,sx,sl;
+    rt.addEventListener('mousedown',function(e){down=true;rt.style.cursor='grabbing';sx=e.pageX-rt.offsetLeft;sl=rt.scrollLeft});
+    rt.addEventListener('mouseleave',function(){down=false;rt.style.cursor='grab'});
+    rt.addEventListener('mouseup',function(){down=false;rt.style.cursor='grab'});
+    rt.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();rt.scrollLeft=sl-(e.pageX-rt.offsetLeft-sx)*1.5});
+  }
 
-  // ─ Calendly fallback display ─
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const widget = document.querySelector('.calendly-inline-widget');
-      if (widget && !widget.querySelector('iframe')) {
-        widget.innerHTML = `
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px;text-align:center;color:white;gap:20px;">
-            <div style="font-size:3rem">📅</div>
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:white">Online Booking Coming Soon</h3>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);max-width:300px;line-height:1.65;">Our online scheduler is being set up. In the meantime, call or text us to book your appointment.</p>
-            <a href="tel:+17183276592" style="display:inline-flex;align-items:center;gap:10px;background:#3B82F6;color:white;padding:14px 28px;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 8px 32px rgba(59,130,246,0.3);">📞 Call 718-327-6592</a>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4)">Mon–Fri 9am–6pm · Sat 9am–3pm</p>
-          </div>`;
-      }
-    }, 3000);
-  });
+  window.scrollRv=function(i){
+    var cards=document.querySelectorAll('.rc'),dots=document.querySelectorAll('.rd');
+    dots.forEach(function(d,j){d.classList.toggle('active',j===i)});
+    if(cards[i])cards[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+  };
+
+  // FIX 19: Calendly loaded ON DEMAND - eliminates 1.7MB unused JS on load
+  window.loadCalendly=function(){
+    var ph=document.getElementById('calPh');
+    ph.innerHTML='<div style="color:rgba(255,255,255,.5);font-size:.9rem;padding:32px;text-align:center">Loading scheduler…</div>';
+
+    // Load Calendly CSS
+    var css=document.createElement('link');
+    css.rel='stylesheet';css.href='https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(css);
+
+    // Load Calendly JS then init
+    var js=document.createElement('script');
+    js.src='https://assets.calendly.com/assets/external/widget.js';
+    js.onload=function(){
+      ph.innerHTML='';
+      var div=document.createElement('div');
+      div.className='calendly-inline-widget';
+      // REPLACE the URL below with your actual Calendly link
+      div.setAttribute('data-url','https://calendly.com/levingoldmanezra/dental-appointment?hide_gdpr_banner=1&background_color=0f172a&text_color=ffffff&primary_color=3b82f6');
+      div.style.cssText='min-width:320px;height:600px;width:100%';
+      document.getElementById('calWrap').appendChild(div);
+      if(window.Calendly)Calendly.initInlineWidgets();
+    };
+    document.body.appendChild(js);
+  };
+})();
 </script>
 </body>
 </html>
